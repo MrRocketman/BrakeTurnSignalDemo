@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A502F1D18F64AD400E063CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A502F1C18F64AD400E063CD /* Cocoa.framework */; };
+		1A502F2718F64AD500E063CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A502F2518F64AD500E063CD /* InfoPlist.strings */; };
+		1A502F2918F64AD500E063CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A502F2818F64AD500E063CD /* main.m */; };
+		1A502F2D18F64AD500E063CD /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1A502F2B18F64AD500E063CD /* Credits.rtf */; };
+		1A502F3018F64AD500E063CD /* MNAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A502F2F18F64AD500E063CD /* MNAppDelegate.m */; };
+		1A502F3318F64AD500E063CD /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A502F3118F64AD500E063CD /* MainMenu.xib */; };
+		1A502F3518F64AD500E063CD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A502F3418F64AD500E063CD /* Images.xcassets */; };
+		1A502F3C18F64AD500E063CD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A502F3B18F64AD500E063CD /* XCTest.framework */; };
+		1A502F3D18F64AD500E063CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A502F1C18F64AD400E063CD /* Cocoa.framework */; };
+		1A502F4518F64AD500E063CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A502F4318F64AD500E063CD /* InfoPlist.strings */; };
+		1A502F4718F64AD500E063CD /* BrakeTurnSignalDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A502F4618F64AD500E063CD /* BrakeTurnSignalDemoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A502F3E18F64AD500E063CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A502F1118F64AD400E063CD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A502F1818F64AD400E063CD;
+			remoteInfo = BrakeTurnSignalDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A502F1918F64AD400E063CD /* BrakeTurnSignalDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrakeTurnSignalDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A502F1C18F64AD400E063CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1A502F1F18F64AD400E063CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1A502F2018F64AD400E063CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1A502F2118F64AD400E063CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A502F2418F64AD500E063CD /* BrakeTurnSignalDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BrakeTurnSignalDemo-Info.plist"; sourceTree = "<group>"; };
+		1A502F2618F64AD500E063CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A502F2818F64AD500E063CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A502F2A18F64AD500E063CD /* BrakeTurnSignalDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BrakeTurnSignalDemo-Prefix.pch"; sourceTree = "<group>"; };
+		1A502F2C18F64AD500E063CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		1A502F2E18F64AD500E063CD /* MNAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNAppDelegate.h; sourceTree = "<group>"; };
+		1A502F2F18F64AD500E063CD /* MNAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNAppDelegate.m; sourceTree = "<group>"; };
+		1A502F3218F64AD500E063CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1A502F3418F64AD500E063CD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		1A502F3A18F64AD500E063CD /* BrakeTurnSignalDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrakeTurnSignalDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A502F3B18F64AD500E063CD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1A502F4218F64AD500E063CD /* BrakeTurnSignalDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BrakeTurnSignalDemoTests-Info.plist"; sourceTree = "<group>"; };
+		1A502F4418F64AD500E063CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A502F4618F64AD500E063CD /* BrakeTurnSignalDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrakeTurnSignalDemoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A502F1618F64AD400E063CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A502F1D18F64AD400E063CD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A502F3718F64AD500E063CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A502F3D18F64AD500E063CD /* Cocoa.framework in Frameworks */,
+				1A502F3C18F64AD500E063CD /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A502F1018F64AD400E063CD = {
+			isa = PBXGroup;
+			children = (
+				1A502F2218F64AD400E063CD /* BrakeTurnSignalDemo */,
+				1A502F4018F64AD500E063CD /* BrakeTurnSignalDemoTests */,
+				1A502F1B18F64AD400E063CD /* Frameworks */,
+				1A502F1A18F64AD400E063CD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A502F1A18F64AD400E063CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F1918F64AD400E063CD /* BrakeTurnSignalDemo.app */,
+				1A502F3A18F64AD500E063CD /* BrakeTurnSignalDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A502F1B18F64AD400E063CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F1C18F64AD400E063CD /* Cocoa.framework */,
+				1A502F3B18F64AD500E063CD /* XCTest.framework */,
+				1A502F1E18F64AD400E063CD /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A502F1E18F64AD400E063CD /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F1F18F64AD400E063CD /* AppKit.framework */,
+				1A502F2018F64AD400E063CD /* CoreData.framework */,
+				1A502F2118F64AD400E063CD /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		1A502F2218F64AD400E063CD /* BrakeTurnSignalDemo */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F2E18F64AD500E063CD /* MNAppDelegate.h */,
+				1A502F2F18F64AD500E063CD /* MNAppDelegate.m */,
+				1A502F3118F64AD500E063CD /* MainMenu.xib */,
+				1A502F3418F64AD500E063CD /* Images.xcassets */,
+				1A502F2318F64AD500E063CD /* Supporting Files */,
+			);
+			path = BrakeTurnSignalDemo;
+			sourceTree = "<group>";
+		};
+		1A502F2318F64AD500E063CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F2418F64AD500E063CD /* BrakeTurnSignalDemo-Info.plist */,
+				1A502F2518F64AD500E063CD /* InfoPlist.strings */,
+				1A502F2818F64AD500E063CD /* main.m */,
+				1A502F2A18F64AD500E063CD /* BrakeTurnSignalDemo-Prefix.pch */,
+				1A502F2B18F64AD500E063CD /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A502F4018F64AD500E063CD /* BrakeTurnSignalDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F4618F64AD500E063CD /* BrakeTurnSignalDemoTests.m */,
+				1A502F4118F64AD500E063CD /* Supporting Files */,
+			);
+			path = BrakeTurnSignalDemoTests;
+			sourceTree = "<group>";
+		};
+		1A502F4118F64AD500E063CD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A502F4218F64AD500E063CD /* BrakeTurnSignalDemoTests-Info.plist */,
+				1A502F4318F64AD500E063CD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A502F1818F64AD400E063CD /* BrakeTurnSignalDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A502F4A18F64AD600E063CD /* Build configuration list for PBXNativeTarget "BrakeTurnSignalDemo" */;
+			buildPhases = (
+				1A502F1518F64AD400E063CD /* Sources */,
+				1A502F1618F64AD400E063CD /* Frameworks */,
+				1A502F1718F64AD400E063CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BrakeTurnSignalDemo;
+			productName = BrakeTurnSignalDemo;
+			productReference = 1A502F1918F64AD400E063CD /* BrakeTurnSignalDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1A502F3918F64AD500E063CD /* BrakeTurnSignalDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A502F4D18F64AD600E063CD /* Build configuration list for PBXNativeTarget "BrakeTurnSignalDemoTests" */;
+			buildPhases = (
+				1A502F3618F64AD500E063CD /* Sources */,
+				1A502F3718F64AD500E063CD /* Frameworks */,
+				1A502F3818F64AD500E063CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A502F3F18F64AD500E063CD /* PBXTargetDependency */,
+			);
+			name = BrakeTurnSignalDemoTests;
+			productName = BrakeTurnSignalDemoTests;
+			productReference = 1A502F3A18F64AD500E063CD /* BrakeTurnSignalDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A502F1118F64AD400E063CD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MN;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = JamesAdams;
+				TargetAttributes = {
+					1A502F3918F64AD500E063CD = {
+						TestTargetID = 1A502F1818F64AD400E063CD;
+					};
+				};
+			};
+			buildConfigurationList = 1A502F1418F64AD400E063CD /* Build configuration list for PBXProject "BrakeTurnSignalDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1A502F1018F64AD400E063CD;
+			productRefGroup = 1A502F1A18F64AD400E063CD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A502F1818F64AD400E063CD /* BrakeTurnSignalDemo */,
+				1A502F3918F64AD500E063CD /* BrakeTurnSignalDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A502F1718F64AD400E063CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A502F2718F64AD500E063CD /* InfoPlist.strings in Resources */,
+				1A502F3518F64AD500E063CD /* Images.xcassets in Resources */,
+				1A502F2D18F64AD500E063CD /* Credits.rtf in Resources */,
+				1A502F3318F64AD500E063CD /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A502F3818F64AD500E063CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A502F4518F64AD500E063CD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A502F1518F64AD400E063CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A502F2918F64AD500E063CD /* main.m in Sources */,
+				1A502F3018F64AD500E063CD /* MNAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A502F3618F64AD500E063CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A502F4718F64AD500E063CD /* BrakeTurnSignalDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A502F3F18F64AD500E063CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A502F1818F64AD400E063CD /* BrakeTurnSignalDemo */;
+			targetProxy = 1A502F3E18F64AD500E063CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1A502F2518F64AD500E063CD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A502F2618F64AD500E063CD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1A502F2B18F64AD500E063CD /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A502F2C18F64AD500E063CD /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		1A502F3118F64AD500E063CD /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A502F3218F64AD500E063CD /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		1A502F4318F64AD500E063CD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A502F4418F64AD500E063CD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A502F4818F64AD600E063CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1A502F4918F64AD600E063CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1A502F4B18F64AD600E063CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BrakeTurnSignalDemo/BrakeTurnSignalDemo-Prefix.pch";
+				INFOPLIST_FILE = "BrakeTurnSignalDemo/BrakeTurnSignalDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1A502F4C18F64AD600E063CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BrakeTurnSignalDemo/BrakeTurnSignalDemo-Prefix.pch";
+				INFOPLIST_FILE = "BrakeTurnSignalDemo/BrakeTurnSignalDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1A502F4E18F64AD600E063CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BrakeTurnSignalDemo.app/Contents/MacOS/BrakeTurnSignalDemo";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BrakeTurnSignalDemo/BrakeTurnSignalDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "BrakeTurnSignalDemoTests/BrakeTurnSignalDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		1A502F4F18F64AD600E063CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BrakeTurnSignalDemo.app/Contents/MacOS/BrakeTurnSignalDemo";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BrakeTurnSignalDemo/BrakeTurnSignalDemo-Prefix.pch";
+				INFOPLIST_FILE = "BrakeTurnSignalDemoTests/BrakeTurnSignalDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A502F1418F64AD400E063CD /* Build configuration list for PBXProject "BrakeTurnSignalDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A502F4818F64AD600E063CD /* Debug */,
+				1A502F4918F64AD600E063CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A502F4A18F64AD600E063CD /* Build configuration list for PBXNativeTarget "BrakeTurnSignalDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A502F4B18F64AD600E063CD /* Debug */,
+				1A502F4C18F64AD600E063CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1A502F4D18F64AD600E063CD /* Build configuration list for PBXNativeTarget "BrakeTurnSignalDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A502F4E18F64AD600E063CD /* Debug */,
+				1A502F4F18F64AD600E063CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A502F1118F64AD400E063CD /* Project object */;
+}
