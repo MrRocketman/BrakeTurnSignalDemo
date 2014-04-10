@@ -36,7 +36,7 @@
     // Insert code here to initialize your application
     systemStartTime = [[NSDate date] timeIntervalSinceReferenceDate];
     
-    flashRate = 1000;
+    flashRate = 700;
     
     // Call manager light states repeatedly
     [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(manageTurnSignalLightStates:) userInfo:nil repeats:YES];
