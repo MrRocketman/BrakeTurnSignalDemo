@@ -24,6 +24,7 @@
     int currentTailLightMillis;
     int previousTailLightMillis;
     int previousTailLightMillis2;
+    int tailLightPatternIndex;
     
     BOOL inputLeftTurn;
     BOOL inputRightTurn;

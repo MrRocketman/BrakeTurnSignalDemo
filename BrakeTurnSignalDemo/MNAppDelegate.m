@@ -36,7 +36,7 @@
     // Insert code here to initialize your application
     systemStartTime = [[NSDate date] timeIntervalSinceReferenceDate];
     
-    flashRate = 700;
+    flashRate = 1000;
     
     // Call manager light states repeatedly
     [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(manageTurnSignalLightStates:) userInfo:nil repeats:YES];
@@ -85,6 +85,7 @@
 - (IBAction)flashPatternSegmentedControlChange:(id)sender
 {
     flashPattern = (int)[sender selectedSegment];
+    tailLightPatternIndex = 0;
 }
 
 #pragma mark - Light On Off
@@ -123,13 +124,15 @@
                 previousTailLightMillis = currentTailLightMillis;
                 
                 // All turn lamps off
-                if (*stateTurn && *stateTail1 && *stateTail2 && *stateTail3)
+                if (tailLightPatternIndex == 0)
                 {
                     // Set all tail turn lamps states on
                     *stateTurn = LOW;
                     *stateTail1 = LOW;
                     *stateTail2 = LOW;
                     *stateTail3 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // All turn lamps on
                 else
@@ -139,6 +142,8 @@
                     *stateTail1 = HIGH;
                     *stateTail2 = HIGH;
                     *stateTail3 = HIGH;
+                    
+                    tailLightPatternIndex = 0;
                 }
             }
             break;
@@ -163,22 +168,28 @@
                 previousTailLightMillis2 = currentTailLightMillis;
                 
                 // All tail turn lamps off
-                if (*stateTail1 && *stateTail2 && *stateTail3)
+                if (tailLightPatternIndex == 0)
                 {
                     // Set tail turn lamp inner state on
                     *stateTail1 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // Tail turn lamp inner on, tail turn lamps middle & outer off
-                else if (!(*stateTail1) && *stateTail2 && *stateTail3)
+                else if (tailLightPatternIndex == 1)
                 {
                     // Set tail turn lamp middle state on
                     *stateTail2 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // Tail turn lamps inner & middle on, Tail turn lamp outer off
-                else if (!(*stateTail1) && !(*stateTail2) && *stateTail3)
+                else if (tailLightPatternIndex == 2)
                 {
                     // Set tail turn lamp outer state on
                     *stateTail3 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // All tail turn lamps on
                 else
@@ -187,6 +198,8 @@
                     *stateTail1 = HIGH;
                     *stateTail2 = HIGH;
                     *stateTail3 = HIGH;
+                    
+                    tailLightPatternIndex = 0;
                 }
             }
             break;
@@ -211,40 +224,52 @@
                 previousTailLightMillis2 = currentTailLightMillis;
                 
                 // All  tail turn lamps off
-                if (*stateTail1 && *stateTail2 && *stateTail3)
+                if (tailLightPatternIndex == 0)
                 {
                     // Set  tail turn lamp inner state on
                     *stateTail1 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // Tail turn lamp inner on,  tail turn lamps middle & outer off
-                else if (!(*stateTail1) && *stateTail2 && *stateTail3)
+                else if (tailLightPatternIndex == 1)
                 {
                     // Set  tail turn lamp middle state on
                     *stateTail2 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // Tail turn lamps inner & middle on,  tail turn lamp outer off
-                else if (!(*stateTail1) && !(*stateTail2) && *stateTail3)
+                else if (tailLightPatternIndex == 2)
                 {
                     // Set  tail turn lamp outer state on
                     *stateTail3 = LOW;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // All  tail turn lamps on
-                else if (!(*stateTail1) && !(*stateTail2) && !(*stateTail3))
+                else if (tailLightPatternIndex == 3)
                 {
                     // Set  tail turn lamp inner state off
                     *stateTail1 = HIGH;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // Tail turn lamp inner off,  tail turn lamps middle & outer on
-                else if (*stateTail1 && !(*stateTail2) && !(*stateTail3))
+                else if (tailLightPatternIndex == 4)
                 {
                     // Set  tail turn lamp middle state off
                     *stateTail2 = HIGH;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // Tail turn lamps inner & middle off,  tail turn lamp outer on
-                else if (*stateTail1 && *stateTail2 && !(*stateTail3))
+                else if (tailLightPatternIndex == 5)
                 {
                     // Set right tail turn lamp outer state off
                     *stateTail3 = HIGH;
+                    
+                    tailLightPatternIndex = 0;
                 }
                 // All other states
                 else
@@ -253,6 +278,8 @@
                     *stateTail1 = HIGH;
                     *stateTail2 = HIGH;
                     *stateTail3 = HIGH;
+                    
+                    tailLightPatternIndex = 0;
                 }
             }
             break;
@@ -277,20 +304,26 @@
                 previousTailLightMillis2 = currentTailLightMillis;
                 
                 // All tail turn lamps on
-                if (!(*stateTail1) && !(*stateTail2) && !(*stateTail3))
+                if (tailLightPatternIndex == 0)
                 {
                     // Set tail turn lamp inner state off
                     *stateTail1 = HIGH;
+                    
+                    tailLightPatternIndex ++;
                 }
-                else if (*stateTail1 && !(*stateTail2) && !(*stateTail3))
+                else if (tailLightPatternIndex == 1)
                 {
                     // Set tail turn lamp middle state off
                     *stateTail2 = HIGH;
+                    
+                    tailLightPatternIndex ++;
                 }
-                else if (*stateTail1 && *stateTail2 && !(*stateTail3))
+                else if (tailLightPatternIndex == 2)
                 {
                     // Set tail turn lamp outer state off
                     *stateTail3 = HIGH;
+                    
+                    tailLightPatternIndex ++;
                 }
                 // All other states
                 else
@@ -299,6 +332,62 @@
                     *stateTail1 = LOW;
                     *stateTail2 = LOW;
                     *stateTail3 = LOW;
+                    
+                    tailLightPatternIndex = 0;
+                }
+            }
+            break;
+        case 4: // Chase2 turn signal pattern
+            // Update current time for  turn
+            currentTailLightMillis = [self millis];
+            
+            // Turn lamp state logic
+            if (currentTailLightMillis - previousTailLightMillis > flashRate)
+            {
+                // Save the last time the turn changed state
+                previousTailLightMillis = currentTailLightMillis;
+                
+                // Toggle turn lamp state
+                *stateTurn = !(*stateTurn);
+            }
+            
+            // Tail turn lamps state logic
+            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 3)
+            {
+                // Save the last time the turn changed state
+                previousTailLightMillis2 = currentTailLightMillis;
+                
+                // Start of pattern
+                if (tailLightPatternIndex == 0)
+                {
+                    *stateTail3= HIGH;
+                    *stateTail1 = LOW;
+                    
+                    tailLightPatternIndex ++;
+                }
+                else if (tailLightPatternIndex == 1)
+                {
+                    *stateTail1 = HIGH;
+                    *stateTail2 = LOW;
+                    
+                    tailLightPatternIndex ++;
+                }
+                else if (tailLightPatternIndex == 2)
+                {
+                    *stateTail2 = HIGH;
+                    *stateTail3 = LOW;
+                    
+                    tailLightPatternIndex = 0;
+                }
+                // All other states
+                else
+                {
+                    // Set all tail turn lamps states off
+                    *stateTail1 = HIGH;
+                    *stateTail2 = HIGH;
+                    *stateTail3 = HIGH;
+                    
+                    tailLightPatternIndex = 0;
                 }
             }
             break;
