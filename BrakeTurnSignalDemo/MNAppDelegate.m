@@ -443,6 +443,18 @@
 			[self digitalWrite:tailR3 state:stateTailR3];
 		}
 	}
+    
+    // Simulate brakes
+    if([self digitalRead:inputBrakesState] == LOW)
+    {
+        [self digitalWrite:brakeRight state:LOW];
+        [self digitalWrite:brakeLeft state:LOW];
+    }
+    else
+    {
+        [self digitalWrite:brakeRight state:HIGH];
+        [self digitalWrite:brakeLeft state:HIGH];
+    }
 }
 
 @end
