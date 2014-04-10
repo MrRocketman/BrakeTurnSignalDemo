@@ -391,7 +391,7 @@
 		[self digitalWrite:brakeRight state:LOW];
 		
 		//turn off any left turn lamps that might still be on after left turn signal indicator becomes inactive
-		if ((!stateTurnL || !stateTailL1 || !stateTailL2 || !stateTailL3) && (!digitalRead(inputLeftTurn)))
+		if ((!stateTurnL || !stateTailL1 || !stateTailL2 || !stateTailL3) && (![self digitalRead:inputLeftTurn]))
 		{
 			//left turn lamps states off
 			stateTurnL = HIGH;
@@ -406,7 +406,7 @@
 			
 		}
 		//turn off any right turn lamps that might still be on after right turn signal indicator becomes inactive
-		if ((!stateTurnR || !stateTailR1 || !stateTailR2 || !stateTailR3) && (!digitalRead(inputRightTurn)))
+		if ((!stateTurnR || !stateTailR1 || !stateTailR2 || !stateTailR3) && (![self digitalRead:inputRightTurn]))
 		{
 			//right turn lamps state off
 			stateTurnR = HIGH;
