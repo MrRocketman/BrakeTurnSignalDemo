@@ -162,7 +162,6 @@
                 // Save the last time the turn changed state
                 previousTailLightMillis2 = currentTailLightMillis;
                 
-                NSLog(@"sequence logic");
                 // All tail turn lamps off
                 if (*stateTail1 && *stateTail2 && *stateTail3)
                 {
@@ -247,13 +246,59 @@
                     // Set right tail turn lamp outer state off
                     *stateTail3 = HIGH;
                 }
-                // All tail turn lamps on
+                // All other states
                 else
                 {
                     // Set all tail turn lamps states off
                     *stateTail1 = HIGH;
                     *stateTail2 = HIGH;
                     *stateTail3 = HIGH;
+                }
+            }
+            break;
+        case 3: // Inverse sequence turn signal pattern
+            // Update current time for  turn
+            currentTailLightMillis = [self millis];
+            
+            // Turn lamp state logic
+            if (currentTailLightMillis - previousTailLightMillis > flashRate)
+            {
+                // Save the last time the turn changed state
+                previousTailLightMillis = currentTailLightMillis;
+                
+                // Toggle turn lamp state
+                *stateTurn = !(*stateTurn);
+            }
+            
+            // Tail turn lamps state logic
+            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 4)
+            {
+                // Save the last time the turn changed state
+                previousTailLightMillis2 = currentTailLightMillis;
+                
+                // All tail turn lamps on
+                if (!(*stateTail1) && !(*stateTail2) && !(*stateTail3))
+                {
+                    // Set tail turn lamp inner state off
+                    *stateTail1 = HIGH;
+                }
+                else if (*stateTail1 && !(*stateTail2) && !(*stateTail3))
+                {
+                    // Set tail turn lamp middle state off
+                    *stateTail2 = HIGH;
+                }
+                else if (*stateTail1 && *stateTail2 && !(*stateTail3))
+                {
+                    // Set tail turn lamp outer state off
+                    *stateTail3 = HIGH;
+                }
+                // All other states
+                else
+                {
+                    // Set all tail turn lamps states on
+                    *stateTail1 = LOW;
+                    *stateTail2 = LOW;
+                    *stateTail3 = LOW;
                 }
             }
             break;
