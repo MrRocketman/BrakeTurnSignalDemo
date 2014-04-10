@@ -33,6 +33,11 @@
     // Insert code here to initialize your application
     flashRate = 1000;
     
+    currentMillisL = [self millis];
+    currentMillisR = [self millis];
+    previousMillisL = [self millis];
+    previousMillisR = [self millis];
+    
     // Call manager light states repeatedly
     [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(manageTurnSignalLightStates:) userInfo:nil repeats:YES];
 }
@@ -97,11 +102,26 @@
 - (void)digitalWrite:(NSButton *)light state:(BOOL)highOrLow
 {
     [light highlight:highOrLow];
+    
+    if(light == brakeLeft)
+    {
+        [self digitalWrite:tailL1 state:highOrLow];
+        [self digitalWrite:tailL2 state:highOrLow];
+        [self digitalWrite:tailL3 state:highOrLow];
+        [self digitalWrite:turnL state:highOrLow];
+    }
+    else if(light == brakeRight)
+    {
+        [self digitalWrite:tailR1 state:highOrLow];
+        [self digitalWrite:tailR2 state:highOrLow];
+        [self digitalWrite:tailR3 state:highOrLow];
+        [self digitalWrite:turnR state:highOrLow];
+    }
 }
 
 - (BOOL)digitalRead:(BOOL)variable
 {
-    return variable;
+    return !variable;
 }
 
 - (unsigned long)millis
