@@ -13,8 +13,6 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="MNAppDelegate">
             <connections>
-                <outlet property="brakeLeft" destination="fPI-Jb-2sg" id="P12-xb-4FS"/>
-                <outlet property="brakeRight" destination="L4Q-9C-MsQ" id="vWn-IY-ujd"/>
                 <outlet property="brakesButton" destination="zed-cV-C8h" id="neg-cT-SQS"/>
                 <outlet property="flashPatternSegmentedControl" destination="rhT-J0-KYm" id="qjZ-Aa-Ci7"/>
                 <outlet property="leftBlinkerButton" destination="cvE-g2-qIa" id="Aj3-AH-cNE"/>
@@ -801,22 +799,6 @@
                             <action selector="flashPatternSegmentedControlChange:" target="Voe-Tx-rLC" id="Cd8-yQ-3HI"/>
                         </connections>
                     </segmentedControl>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-Jb-2sg">
-                        <rect key="frame" x="71" y="99" width="103" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Brake Left" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lA7-bU-6Zc">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4Q-9C-MsQ">
-                        <rect key="frame" x="487" y="86" width="112" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Brake Right" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K4j-Kl-aE5">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
                 </subviews>
             </view>
         </window>

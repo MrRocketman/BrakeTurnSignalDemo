@@ -21,10 +21,8 @@
     
     int flashPattern;
     long flashRate;
-    int currentMillisL;
-    int previousMillisL;
-    int currentMillisR;
-    int previousMillisR;
+    int currentTailLightMillis;
+    int previousTailLightMillis;
     
     BOOL inputLeftTurn;
     BOOL inputRightTurn;
@@ -40,13 +38,11 @@
 
 @property(strong, nonatomic) IBOutlet NSSegmentedControl *flashPatternSegmentedControl;
 
-@property(strong, nonatomic) IBOutlet NSButton *brakeLeft;
 @property(strong, nonatomic) IBOutlet NSButton *tailL1;
 @property(strong, nonatomic) IBOutlet NSButton *tailL2;
 @property(strong, nonatomic) IBOutlet NSButton *tailL3;
 @property(strong, nonatomic) IBOutlet NSButton *turnL;
 
-@property(strong, nonatomic) IBOutlet NSButton *brakeRight;
 @property(strong, nonatomic) IBOutlet NSButton *tailR1;
 @property(strong, nonatomic) IBOutlet NSButton *tailR2;
 @property(strong, nonatomic) IBOutlet NSButton *tailR3;
