@@ -11,6 +11,27 @@
 #define LOW NO
 #define HIGH YES
 
+#define NUMBER_OF_PATTERNS 5
+#define MAX_NUMBER_OF_STATES_PER_PATTERN 6
+
+BOOL tailLightPatterns[NUMBER_OF_PATTERNS][MAX_NUMBER_OF_STATES_PER_PATTERN][3] =
+{
+    {{YES, YES, YES}, {NO, NO, NO}},
+    {{NO, NO, NO}, {YES, NO, NO}, {YES, YES, NO}, {YES, YES, YES}},
+    {{NO, NO, NO}, {YES, NO, NO}, {YES, YES, NO}, {YES, YES, YES}, {NO, YES, YES}, {NO, NO, YES}},
+    {{YES, YES, YES}, {NO, YES, YES}, {NO, NO, YES}, {NO, NO, NO}},
+    {{NO, YES, YES}, {YES, NO, YES}, {YES, YES, NO}}
+};
+
+int tailLightPatternStates[NUMBER_OF_PATTERNS] =
+{
+    2,
+    4,
+    6,
+    4,
+    3
+};
+
 // Private methods/variables
 @interface MNAppDelegate()
 {
@@ -111,286 +132,38 @@
 
 - (void)turnSignalLogicForTurnLight:(BOOL *)stateTurn light1:(BOOL *)stateTail1 light2:(BOOL *)stateTail2 light3:(BOOL *)stateTail3
 {
-    switch (flashPattern)
+    // Update current time for turn signal
+    currentTailLightMillis = [self millis];
+    
+    // Front Turn lamp state logic
+    if (currentTailLightMillis - previousTailLightMillis > flashRate / 2)
     {
-        default: // Basic turn signal pattern (pattern 0)
-            // Update current time for turn signal
-            currentTailLightMillis = [self millis];
+        // Save the last time the turn changed state
+        previousTailLightMillis = currentTailLightMillis;
+        
+        *stateTurn = !(*stateTurn);
+    }
+    
+    // Tail turn lamps state logic
+    if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / tailLightPatternStates[flashPattern])
+    {
+        // Save the last time the turn changed state
+        previousTailLightMillis2 = currentTailLightMillis;
+        
+        // Do the pattern state
+        if(tailLightPatternIndex < tailLightPatternStates[flashPattern])
+        {
+            *stateTail1 = tailLightPatterns[flashPattern][tailLightPatternIndex][0];
+            *stateTail2 = tailLightPatterns[flashPattern][tailLightPatternIndex][1];
+            *stateTail3 = tailLightPatterns[flashPattern][tailLightPatternIndex][2];
             
-            // Turn signal state logic
-            if (currentTailLightMillis - previousTailLightMillis > flashRate)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis = currentTailLightMillis;
-                
-                // All turn lamps off
-                if (tailLightPatternIndex == 0)
-                {
-                    // Set all tail turn lamps states on
-                    *stateTurn = LOW;
-                    *stateTail1 = LOW;
-                    *stateTail2 = LOW;
-                    *stateTail3 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // All turn lamps on
-                else
-                {
-                    // Set all tail turn lamps states off
-                    *stateTurn = HIGH;
-                    *stateTail1 = HIGH;
-                    *stateTail2 = HIGH;
-                    *stateTail3 = HIGH;
-                    
-                    tailLightPatternIndex = 0;
-                }
-            }
-            break;
-            
-        case 1: // Sequence turn signal pattern
-            // Update current time for turn signal
-            currentTailLightMillis = [self millis];
-            
-            // Turn lamp state logic
-            if (currentTailLightMillis - previousTailLightMillis > flashRate)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis = currentTailLightMillis;
-                
-                *stateTurn = !(*stateTurn);
-            }
-            
-            // Tail turn lamps state logic
-            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 4)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis2 = currentTailLightMillis;
-                
-                // All tail turn lamps off
-                if (tailLightPatternIndex == 0)
-                {
-                    // Set tail turn lamp inner state on
-                    *stateTail1 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // Tail turn lamp inner on, tail turn lamps middle & outer off
-                else if (tailLightPatternIndex == 1)
-                {
-                    // Set tail turn lamp middle state on
-                    *stateTail2 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // Tail turn lamps inner & middle on, Tail turn lamp outer off
-                else if (tailLightPatternIndex == 2)
-                {
-                    // Set tail turn lamp outer state on
-                    *stateTail3 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // All tail turn lamps on
-                else
-                {
-                    // Set all tail turn lamps states off
-                    *stateTail1 = HIGH;
-                    *stateTail2 = HIGH;
-                    *stateTail3 = HIGH;
-                    
-                    tailLightPatternIndex = 0;
-                }
-            }
-            break;
-        case 2: // Chase turn signal pattern
-            // Update current time for  turn
-            currentTailLightMillis = [self millis];
-            
-            // Turn lamp state logic
-            if (currentTailLightMillis - previousTailLightMillis > flashRate)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis = currentTailLightMillis;
-                
-                // Toggle turn lamp state
-                *stateTurn = !(*stateTurn);
-            }
-            
-            // Tail turn lamps state logic
-            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 6)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis2 = currentTailLightMillis;
-                
-                // All  tail turn lamps off
-                if (tailLightPatternIndex == 0)
-                {
-                    // Set  tail turn lamp inner state on
-                    *stateTail1 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // Tail turn lamp inner on,  tail turn lamps middle & outer off
-                else if (tailLightPatternIndex == 1)
-                {
-                    // Set  tail turn lamp middle state on
-                    *stateTail2 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // Tail turn lamps inner & middle on,  tail turn lamp outer off
-                else if (tailLightPatternIndex == 2)
-                {
-                    // Set  tail turn lamp outer state on
-                    *stateTail3 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // All  tail turn lamps on
-                else if (tailLightPatternIndex == 3)
-                {
-                    // Set  tail turn lamp inner state off
-                    *stateTail1 = HIGH;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // Tail turn lamp inner off,  tail turn lamps middle & outer on
-                else if (tailLightPatternIndex == 4)
-                {
-                    // Set  tail turn lamp middle state off
-                    *stateTail2 = HIGH;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // Tail turn lamps inner & middle off,  tail turn lamp outer on
-                else if (tailLightPatternIndex == 5)
-                {
-                    // Set right tail turn lamp outer state off
-                    *stateTail3 = HIGH;
-                    
-                    tailLightPatternIndex = 0;
-                }
-                // All other states
-                else
-                {
-                    // Set all tail turn lamps states off
-                    *stateTail1 = HIGH;
-                    *stateTail2 = HIGH;
-                    *stateTail3 = HIGH;
-                    
-                    tailLightPatternIndex = 0;
-                }
-            }
-            break;
-        case 3: // Inverse sequence turn signal pattern
-            // Update current time for  turn
-            currentTailLightMillis = [self millis];
-            
-            // Turn lamp state logic
-            if (currentTailLightMillis - previousTailLightMillis > flashRate)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis = currentTailLightMillis;
-                
-                // Toggle turn lamp state
-                *stateTurn = !(*stateTurn);
-            }
-            
-            // Tail turn lamps state logic
-            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 4)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis2 = currentTailLightMillis;
-                
-                // All tail turn lamps on
-                if (tailLightPatternIndex == 0)
-                {
-                    // Set tail turn lamp inner state off
-                    *stateTail1 = HIGH;
-                    
-                    tailLightPatternIndex ++;
-                }
-                else if (tailLightPatternIndex == 1)
-                {
-                    // Set tail turn lamp middle state off
-                    *stateTail2 = HIGH;
-                    
-                    tailLightPatternIndex ++;
-                }
-                else if (tailLightPatternIndex == 2)
-                {
-                    // Set tail turn lamp outer state off
-                    *stateTail3 = HIGH;
-                    
-                    tailLightPatternIndex ++;
-                }
-                // All other states
-                else
-                {
-                    // Set all tail turn lamps states on
-                    *stateTail1 = LOW;
-                    *stateTail2 = LOW;
-                    *stateTail3 = LOW;
-                    
-                    tailLightPatternIndex = 0;
-                }
-            }
-            break;
-        case 4: // Chase2 turn signal pattern
-            // Update current time for  turn
-            currentTailLightMillis = [self millis];
-            
-            // Turn lamp state logic
-            if (currentTailLightMillis - previousTailLightMillis > flashRate)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis = currentTailLightMillis;
-                
-                // Toggle turn lamp state
-                *stateTurn = !(*stateTurn);
-            }
-            
-            // Tail turn lamps state logic
-            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 3)
-            {
-                // Save the last time the turn changed state
-                previousTailLightMillis2 = currentTailLightMillis;
-                
-                // Start of pattern
-                if (tailLightPatternIndex == 0)
-                {
-                    *stateTail3= HIGH;
-                    *stateTail1 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                else if (tailLightPatternIndex == 1)
-                {
-                    *stateTail1 = HIGH;
-                    *stateTail2 = LOW;
-                    
-                    tailLightPatternIndex ++;
-                }
-                else if (tailLightPatternIndex == 2)
-                {
-                    *stateTail2 = HIGH;
-                    *stateTail3 = LOW;
-                    
-                    tailLightPatternIndex = 0;
-                }
-                // All other states
-                else
-                {
-                    // Set all tail turn lamps states off
-                    *stateTail1 = HIGH;
-                    *stateTail2 = HIGH;
-                    *stateTail3 = HIGH;
-                    
-                    tailLightPatternIndex = 0;
-                }
-            }
-            break;
+            tailLightPatternIndex ++;
+        }
+        // Loop back to the first state
+        if(tailLightPatternIndex >= tailLightPatternStates[flashPattern])
+        {
+            tailLightPatternIndex = 0;
+        }
     }
 }
 
