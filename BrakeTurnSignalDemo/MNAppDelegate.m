@@ -14,13 +14,13 @@
 #define NUMBER_OF_PATTERNS 5
 #define MAX_NUMBER_OF_STATES_PER_PATTERN 6
 
-BOOL tailLightPatterns[NUMBER_OF_PATTERNS][MAX_NUMBER_OF_STATES_PER_PATTERN][3] =
+char tailLightPatterns[NUMBER_OF_PATTERNS][MAX_NUMBER_OF_STATES_PER_PATTERN][3] =
 {
-    {{YES, YES, YES}, {NO, NO, NO}},
-    {{NO, NO, NO}, {YES, NO, NO}, {YES, YES, NO}, {YES, YES, YES}},
-    {{NO, NO, NO}, {YES, NO, NO}, {YES, YES, NO}, {YES, YES, YES}, {NO, YES, YES}, {NO, NO, YES}},
-    {{YES, YES, YES}, {NO, YES, YES}, {NO, NO, YES}, {NO, NO, NO}},
-    {{NO, YES, YES}, {YES, NO, YES}, {YES, YES, NO}}
+    {{'1', '1', '1'}, {'\0', '\0', '\0'}},
+    {{'\0', '\0', '\0'}, {'1', '\0', '\0'}, {'1', '1', '\0'}, {'1', '1', '1'}},
+    {{'\0', '\0', '\0'}, {'1', '\0', '\0'}, {'1', '1', '\0'}, {'1', '1', '1'}, {'\0', '1', '1'}, {'\0', '\0', '1'}},
+    {{'1', '1', '1'}, {'\0', '1', '1'}, {'\0', '\0', '1'}, {'\0', '\0', '\0'}},
+    {{'\0', '1', '1'}, {'1', '\0', '1'}, {'1', '1', '\0'}}
 };
 
 int tailLightPatternStates[NUMBER_OF_PATTERNS] =
