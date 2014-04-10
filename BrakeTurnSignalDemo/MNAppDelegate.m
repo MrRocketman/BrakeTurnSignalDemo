@@ -150,12 +150,19 @@
             // Turn lamp state logic
             if (currentTailLightMillis - previousTailLightMillis > flashRate)
             {
+                // Save the last time the turn changed state
+                previousTailLightMillis = currentTailLightMillis;
+                
                 *stateTurn = !(*stateTurn);
             }
             
             // Tail turn lamps state logic
-            if (((currentTailLightMillis - previousTailLightMillis) / 4) > flashRate)
+            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 4)
             {
+                // Save the last time the turn changed state
+                previousTailLightMillis2 = currentTailLightMillis;
+                
+                NSLog(@"sequence logic");
                 // All tail turn lamps off
                 if (*stateTail1 && *stateTail2 && *stateTail3)
                 {
@@ -191,13 +198,19 @@
             // Turn lamp state logic
             if (currentTailLightMillis - previousTailLightMillis > flashRate)
             {
+                // Save the last time the turn changed state
+                previousTailLightMillis = currentTailLightMillis;
+                
                 // Toggle turn lamp state
                 *stateTurn = !(*stateTurn);
             }
             
             // Tail turn lamps state logic
-            if (((currentTailLightMillis - previousTailLightMillis) / 6) > flashRate)
+            if ((currentTailLightMillis - previousTailLightMillis2) > flashRate / 6)
             {
+                // Save the last time the turn changed state
+                previousTailLightMillis2 = currentTailLightMillis;
+                
                 // All  tail turn lamps off
                 if (*stateTail1 && *stateTail2 && *stateTail3)
                 {

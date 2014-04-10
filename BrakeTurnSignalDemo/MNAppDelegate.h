@@ -23,6 +23,7 @@
     long flashRate;
     int currentTailLightMillis;
     int previousTailLightMillis;
+    int previousTailLightMillis2;
     
     BOOL inputLeftTurn;
     BOOL inputRightTurn;
