@@ -247,7 +247,16 @@
                     // Set right tail turn lamp outer state off
                     *stateTail3 = HIGH;
                 }
+                // All tail turn lamps on
+                else
+                {
+                    // Set all tail turn lamps states off
+                    *stateTail1 = HIGH;
+                    *stateTail2 = HIGH;
+                    *stateTail3 = HIGH;
+                }
             }
+            break;
     }
 }
 
