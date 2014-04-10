@@ -29,6 +29,8 @@
 
 @synthesize leftBlinkerButton, rightBlinkerButton, brakesButton, tailL1, tailL2, tailL3, turnL, tailR1, tailR2, tailR3, turnR;
 
+#pragma mark - Main Code Start
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
@@ -110,27 +112,29 @@
 {
     switch (flashPattern)
     {
-        default: //basic left turn signal pattern (pattern 0)
-            currentTailLightMillis = [self millis];	//update current time for left turn
+        default: // Basic turn signal pattern (pattern 0)
+            // Update current time for turn signal
+            currentTailLightMillis = [self millis];
             
-            //left turn state logic
+            // Turn signal state logic
             if (currentTailLightMillis - previousTailLightMillis > flashRate)
             {
-                previousTailLightMillis = currentTailLightMillis;		//save last time left turn changed state
+                // Save the last time the turn changed state
+                previousTailLightMillis = currentTailLightMillis;
                 
-                //all left turn lamps off
+                // All turn lamps off
                 if (*stateTurn && *stateTail1 && *stateTail2 && *stateTail3)
                 {
-                    //set all left tail turn lamps states on
+                    // Set all tail turn lamps states on
                     *stateTurn = LOW;
                     *stateTail1 = LOW;
                     *stateTail2 = LOW;
                     *stateTail3 = LOW;
                 }
-                //all left turn lamps on
+                // All turn lamps on
                 else
                 {
-                    //set all left tail turn lamps states off
+                    // Set all tail turn lamps states off
                     *stateTurn = HIGH;
                     *stateTail1 = HIGH;
                     *stateTail2 = HIGH;
@@ -139,84 +143,96 @@
             }
             break;
             
-        case 1: //sequence left turn signal pattern
-            currentTailLightMillis = [self millis]; //update current time for left turn
+        case 1: // Sequence turn signal pattern
+            // Update current time for turn signal
+            currentTailLightMillis = [self millis];
             
-            //left turn lamp state logic
+            // Turn lamp state logic
             if (currentTailLightMillis - previousTailLightMillis > flashRate)
             {
                 *stateTurn = !(*stateTurn);
             }
             
-            //left tail turn lamps state logic
+            // Tail turn lamps state logic
             if (((currentTailLightMillis - previousTailLightMillis) / 4) > flashRate)
             {
-                //all left tail turn lamps off
+                // All tail turn lamps off
                 if (*stateTail1 && *stateTail2 && *stateTail3)
                 {
-                    *stateTail1 = LOW;					//set left tail turn lamp inner state on
+                    // Set tail turn lamp inner state on
+                    *stateTail1 = LOW;
                 }
-                //left tail turn lamp inner on, left tail turn lamps middle & outer off
+                // Tail turn lamp inner on, tail turn lamps middle & outer off
                 else if (!stateTail1 && stateTail2 && stateTail3)
                 {
-                    *stateTail2 = LOW;					//set left tail turn lamp middle state on
+                    // Set tail turn lamp middle state on
+                    *stateTail2 = LOW;
                 }
-                //left tail turn lamps inner & middle on, left tail turn lamp outer off
+                // Tail turn lamps inner & middle on, Tail turn lamp outer off
                 else if (!stateTail1 && !stateTail2 && stateTail3)
                 {
-                    *stateTail3 = LOW;					//set left tail turn lamp outer state on
+                    // Set tail turn lamp outer state on
+                    *stateTail3 = LOW;
                 }
-                //all left tail turn lamps on
+                // All tail turn lamps on
                 else
                 {
-                    //set all left tail turn lamps states off
+                    // Set all tail turn lamps states off
                     *stateTail1 = HIGH;
                     *stateTail2 = HIGH;
                     *stateTail3 = HIGH;
                 }
             }
             break;
-        case 2: //chase left turn signal pattern
-            currentTailLightMillis = [self millis]; //update current time for left turn
+        case 2: // Chase turn signal pattern
+            // Update current time for  turn
+            currentTailLightMillis = [self millis];
             
-            //left turn lamp state logic
+            // Turn lamp state logic
             if (currentTailLightMillis - previousTailLightMillis > flashRate)
             {
-                *stateTurn = !(*stateTurn);				//toggle left turn lamp state
+                // Toggle turn lamp state
+                *stateTurn = !(*stateTurn);
             }
             
-            //left tail turn lamps state logic
+            // Tail turn lamps state logic
             if (((currentTailLightMillis - previousTailLightMillis) / 6) > flashRate)
             {
-                //all left tail turn lamps off
+                // All  tail turn lamps off
                 if (*stateTail1 && *stateTail2 && *stateTail3)
                 {
-                    *stateTail1 = LOW;					//set left tail turn lamp inner state on
+                    // Set  tail turn lamp inner state on
+                    *stateTail1 = LOW;
                 }
-                //left tail turn lamp inner on, left tail turn lamps middle & outer off
+                // Tail turn lamp inner on,  tail turn lamps middle & outer off
                 else if (!(*stateTail1) && *stateTail2 && *stateTail3)
                 {
-                    *stateTail2 = LOW;					//set left tail turn lamp middle state on
+                    // Set  tail turn lamp middle state on
+                    *stateTail2 = LOW;
                 }
-                //left tail turn lamps inner & middle on, left tail turn lamp outer off
+                // Tail turn lamps inner & middle on,  tail turn lamp outer off
                 else if (!(*stateTail1) && !(*stateTail2) && *stateTail3)
                 {
-                    *stateTail3 = LOW;					//set left tail turn lamp outer state on
+                    // Set  tail turn lamp outer state on
+                    *stateTail3 = LOW;
                 }
-                //all left tail turn lamps on
+                // All  tail turn lamps on
                 else if (!(*stateTail1) && !(*stateTail2) && !(*stateTail3))
                 {
-                    *stateTail1 = HIGH;					//set left tail turn lamp inner state off
+                    // Set  tail turn lamp inner state off
+                    *stateTail1 = HIGH;
                 }
-                //left tail turn lamp inner off, left tail turn lamps middle & outer on
+                // Tail turn lamp inner off,  tail turn lamps middle & outer on
                 else if (*stateTail1 && !(*stateTail2) && !(*stateTail3))
                 {
-                    *stateTail2 = HIGH;					//set left tail turn lamp middle state off
+                    // Set  tail turn lamp middle state off
+                    *stateTail2 = HIGH;
                 }
-                //left tail turn lamps inner & middle off, left tail turn lamp outer on
+                // Tail turn lamps inner & middle off,  tail turn lamp outer on
                 else if (*stateTail1 && *stateTail2 && !(*stateTail3))
                 {
-                    *stateTail3 = HIGH;					//set right tail turn lamp outer state off
+                    // Set right tail turn lamp outer state off
+                    *stateTail3 = HIGH;
                 }
             }
     }
@@ -263,7 +279,7 @@
         stateTailR2 = LOW;
         stateTailR3 = LOW;
     }
-    // Brakes signal and left turn signal are active
+    // Brakes signal and right turn signal are active
     else if(inputBrakesState == LOW && inputLeftTurnState == HIGH && inputRightTurnState == LOW)
     {
         //set left tail turn lamps states on
@@ -281,7 +297,7 @@
         stateTailR2 = HIGH;
         stateTailR3 = HIGH;
     }
-    // Brakes signal and left turn signal are active
+    // Brakes signal and right turn signal are active
     else if(inputBrakesState == HIGH && inputLeftTurnState == HIGH && inputRightTurnState == LOW)
     {
         //set left tail turn lamps states off
@@ -302,8 +318,7 @@
         [self turnSignalLogicForTurnLight:&stateTurnR light1:&stateTailR1 light2:&stateTailR2 light3:&stateTailR3];
     }
     
-    
-    // Flahsers signal is active
+#pragma mark !!! Write flasher signal logic here
     if(1 == 0)
     {
         
