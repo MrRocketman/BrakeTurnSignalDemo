@@ -13,16 +13,20 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="MNAppDelegate">
             <connections>
+                <outlet property="brakeLeft" destination="fPI-Jb-2sg" id="P12-xb-4FS"/>
+                <outlet property="brakeRight" destination="L4Q-9C-MsQ" id="vWn-IY-ujd"/>
                 <outlet property="brakesButton" destination="zed-cV-C8h" id="neg-cT-SQS"/>
                 <outlet property="flashPatternSegmentedControl" destination="rhT-J0-KYm" id="qjZ-Aa-Ci7"/>
                 <outlet property="leftBlinkerButton" destination="cvE-g2-qIa" id="Aj3-AH-cNE"/>
-                <outlet property="leftLight1" destination="lyq-0j-i90" id="3kQ-FI-z3f"/>
-                <outlet property="leftLight2" destination="20n-3T-6A3" id="324-s6-PCe"/>
-                <outlet property="leftLight3" destination="Hkg-8y-l0u" id="vN4-g5-BsJ"/>
                 <outlet property="rightBlinkerButton" destination="UnD-rp-gbe" id="qzs-b3-hgp"/>
-                <outlet property="rightLight1" destination="61n-ZE-LU8" id="7US-sv-hIp"/>
-                <outlet property="rightLight2" destination="zvj-fe-vzm" id="XxP-kq-ygI"/>
-                <outlet property="rightLight3" destination="wLv-Zf-zve" id="xtb-GE-NEM"/>
+                <outlet property="tailL1" destination="Hkg-8y-l0u" id="OfP-kk-p5g"/>
+                <outlet property="tailL2" destination="20n-3T-6A3" id="hbI-hN-0ht"/>
+                <outlet property="tailL3" destination="lyq-0j-i90" id="e5l-pR-vNJ"/>
+                <outlet property="tailR1" destination="wLv-Zf-zve" id="u9M-zm-Idv"/>
+                <outlet property="tailR2" destination="zvj-fe-vzm" id="fxi-Ai-kgN"/>
+                <outlet property="tailR3" destination="61n-ZE-LU8" id="lnv-n9-riL"/>
+                <outlet property="turnL" destination="zfC-tJ-uMv" id="oRb-2F-DtA"/>
+                <outlet property="turnR" destination="vuf-PS-OLF" id="9zF-Rh-wIp"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -686,49 +690,65 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lyq-0j-i90">
-                        <rect key="frame" x="14" y="13" width="72" height="32"/>
+                        <rect key="frame" x="14" y="46" width="72" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WzP-cL-Cas">
+                        <buttonCell key="cell" type="push" title="L3" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WzP-cL-Cas">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="20n-3T-6A3">
-                        <rect key="frame" x="86" y="13" width="72" height="32"/>
+                        <rect key="frame" x="86" y="46" width="72" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MTH-xw-N3Y">
+                        <buttonCell key="cell" type="push" title="L2" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MTH-xw-N3Y">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hkg-8y-l0u">
-                        <rect key="frame" x="158" y="13" width="72" height="32"/>
+                        <rect key="frame" x="158" y="46" width="72" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MED-nR-Zdw">
+                        <buttonCell key="cell" type="push" title="L1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MED-nR-Zdw">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfC-tJ-uMv">
+                        <rect key="frame" x="14" y="13" width="76" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="TurnL" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jof-Cm-mLe">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vuf-PS-OLF">
+                        <rect key="frame" x="560" y="13" width="78" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="TurnR" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tBS-K6-2IQ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61n-ZE-LU8">
-                        <rect key="frame" x="564" y="13" width="72" height="32"/>
+                        <rect key="frame" x="564" y="46" width="72" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qF7-Rk-DF4">
+                        <buttonCell key="cell" type="push" title="R3" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qF7-Rk-DF4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zvj-fe-vzm">
-                        <rect key="frame" x="492" y="13" width="72" height="32"/>
+                        <rect key="frame" x="492" y="46" width="72" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DOC-Gm-2l7">
+                        <buttonCell key="cell" type="push" title="R2" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DOC-Gm-2l7">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLv-Zf-zve">
-                        <rect key="frame" x="420" y="13" width="72" height="32"/>
+                        <rect key="frame" x="420" y="46" width="72" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32p-ZR-ddK">
+                        <buttonCell key="cell" type="push" title="R1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="32p-ZR-ddK">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -781,6 +801,22 @@
                             <action selector="flashPatternSegmentedControlChange:" target="Voe-Tx-rLC" id="Cd8-yQ-3HI"/>
                         </connections>
                     </segmentedControl>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-Jb-2sg">
+                        <rect key="frame" x="71" y="99" width="103" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Brake Left" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lA7-bU-6Zc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L4Q-9C-MsQ">
+                        <rect key="frame" x="487" y="86" width="112" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Brake Right" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K4j-Kl-aE5">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
                 </subviews>
             </view>
         </window>

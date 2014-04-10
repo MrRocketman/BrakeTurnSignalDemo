@@ -17,10 +17,7 @@
     
 }
 
-- (void)leftLightOn:(int)lightIndex;
-- (void)leftLightOff:(int)lightIndex;
-- (void)rightLightOn:(int)lightIndex;
-- (void)rightLightOff:(int)lightIndex;
+- (void)digitalWrite:(NSButton *)light state:(BOOL)highOrLow;
 - (BOOL)digitalRead:(BOOL)variable;
 - (void)manageTurnSignalLightStates:(NSTimer *)timer;
 
@@ -29,15 +26,11 @@
 
 @implementation MNAppDelegate
 
-@synthesize leftBlinkerButton, rightBlinkerButton, brakesButton, leftLight1, leftLight2, leftLight3, leftLights, rightLight1, rightLight2, rightLight3, rightLights;
+@synthesize leftBlinkerButton, rightBlinkerButton, brakesButton, brakeLeft, tailL1, tailL2, tailL3, turnL, brakeRight, tailR1, tailR2, tailR3, turnR;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    
-    leftLights = [[NSArray alloc] initWithObjects:leftLight1, leftLight2, leftLight3, nil];
-    rightLights = [[NSArray alloc] initWithObjects:rightLight1, rightLight2, rightLight3, nil];
-    
     flashRate = 1000;
     
     // Call manager light states repeatedly
@@ -101,32 +94,9 @@
 
 #pragma mark - Light On Off
 
-- (void)leftLightOn:(int)lightIndex
+- (void)digitalWrite:(NSButton *)light state:(BOOL)highOrLow
 {
-    [[leftLights objectAtIndexedSubscript:lightIndex] setTitle:@"LIGHT"];
-    [[leftLights objectAtIndexedSubscript:lightIndex] highlight:YES];
-    leftLightStates[lightIndex] = YES;
-}
-
-- (void)leftLightOff:(int)lightIndex
-{
-    [[leftLights objectAtIndexedSubscript:lightIndex] setTitle:@""];
-    [[leftLights objectAtIndexedSubscript:lightIndex] highlight:NO];
-    leftLightStates[lightIndex] = NO;
-}
-
-- (void)rightLightOn:(int)lightIndex
-{
-    [[rightLights objectAtIndexedSubscript:lightIndex] setTitle:@"LIGHT"];
-    [[rightLights objectAtIndexedSubscript:lightIndex] highlight:YES];
-    rightLightStates[lightIndex] = YES;
-}
-
-- (void)rightLightOff:(int)lightIndex
-{
-    [[rightLights objectAtIndexedSubscript:lightIndex] setTitle:@""];
-    [[rightLights objectAtIndexedSubscript:lightIndex] highlight:NO];
-    rightLightStates[lightIndex] = NO;
+    [light highlight:highOrLow];
 }
 
 - (BOOL)digitalRead:(BOOL)variable
@@ -146,6 +116,8 @@
 	//left turn signal indicator active
 	if([self digitalRead:inputLeftTurn] == LOW)
 	{
+        [self digitalWrite:brakeLeft state:HIGH]; //turn off braking inidicator left side when left turn is on
+        
 		switch (flashPattern)
 		{
 				//basic left turn signal pattern
@@ -174,15 +146,15 @@
 						stateTailL3 = HIGH;
 					}
 					//update left turn lamps relays
-					digitalWrite(turnL, stateTurnL);
-					digitalWrite(tailL1, stateTailL1);
-					digitalWrite(tailL2, stateTailL2);
-					digitalWrite(tailL3, stateTailL3);
+					[self digitalWrite:turnL state:stateTurnL];
+					[self digitalWrite:tailL1 state:stateTailL1];
+					[self digitalWrite:tailL2 state:stateTailL2];
+					[self digitalWrite:tailL3 state:stateTailL3];
 				}
 				break;
 				//sequence left turn signal pattern
 			case 1:
-				currentMillisL = millis();					//update current time for left turn
+				currentMillisL = [self millis];					//update current time for left turn
 				//left turn lamp state logic
 				if (currentMillisL - previousMillisL > flashRate)
 				{
@@ -215,14 +187,14 @@
 						stateTailL3 = HIGH;
 					}
 					//update left tail turn lamps relays
-					digitalWrite(tailL1, stateTailL1);
-					digitalWrite(tailL2, stateTailL2);
-					digitalWrite(tailL3, stateTailL3);
+					[self digitalWrite:tailL1 state:stateTailL1];
+					[self digitalWrite:tailL2 state:stateTailL2];
+					[self digitalWrite:tailL3 state:stateTailL3];
 				}
 				break;
 				//chase left turn signal pattern
 			case 2:
-				currentMillisL = millis();					//update current time for left turn
+				currentMillisL = [self millis];					//update current time for left turn
 				//left turn lamp state logic
 				if (currentMillisL - previousMillisL > flashRate)
 				{
@@ -266,10 +238,10 @@
 						//default case do nothing
 					}
 					//update left turn lamps relays
-					digitalWrite(turnL, stateTurnL);
-					digitalWrite(tailL1, stateTailL1);
-					digitalWrite(tailL2, stateTailL2);
-					digitalWrite(tailL3, stateTailL3);
+					[self digitalWrite:turnL state:stateTurnL];
+					[self digitalWrite:tailL1 state:stateTailL1];
+					[self digitalWrite:tailL2 state:stateTailL2];
+					[self digitalWrite:tailL3 state:stateTailL3];
 				}
 			default:
 				//not valid turn signal pattern detected
@@ -277,15 +249,15 @@
 		}
 	}
 	//right turn signal indicator active
-	else if (digitalRead(inputRightTurn) == LOW)
+	else if([self digitalRead:inputRightTurn] == LOW)
 	{
-		digitalWrite(brakeRight, HIGH);						//turn off braking indicator right side when right turn is on
+		[self digitalWrite:brakeRight state:HIGH];						//turn off braking indicator right side when right turn is on
 		
 		switch (flashPattern)
 		{
 				//basic right turn signal pattern
 			case 0:
-				currentMillisR = millis();					//update current time for right turn
+				currentMillisR = [self millis];					//update current time for right turn
 				//right turn state logic
 				if (currentMillisR - previousMillisR > flashRate)
 				{
@@ -309,15 +281,15 @@
 						stateTailR3 = HIGH;
 					}
 					//update right turn lamps relays
-					digitalWrite(turnR, stateTurnR);
-					digitalWrite(tailR1, stateTailR1);
-					digitalWrite(tailR2, stateTailR2);
-					digitalWrite(tailR3, stateTailR3);
+					[self digitalWrite:turnR state:stateTurnR];
+					[self digitalWrite:tailR1 state:stateTailR1];
+					[self digitalWrite:tailR2 state:stateTailR2];
+					[self digitalWrite:tailR3 state:stateTailR3];
 				}
 				break;
 				//sequence right turn signal pattern
 			case 1:
-				currentMillisR = millis();					//update current time for right turn
+				currentMillisR = [self millis];					//update current time for right turn
 				//right turn lamp state logic
 				if (currentMillisR - previousMillisR > flashRate)
 				{
@@ -350,14 +322,14 @@
 						stateTailR3 = HIGH;
 					}
 					//update right tail turn lamps relays
-					digitalWrite(tailR1, stateTailR1);
-					digitalWrite(tailR2, stateTailR2);
-					digitalWrite(tailR3, stateTailR3);
+					[self digitalWrite:tailR1 state:stateTailR1];
+					[self digitalWrite:tailR2 state:stateTailR2];
+					[self digitalWrite:tailR3 state:stateTailR3];
 				}
 				break;
 				//chase right turn signal pattern
 			case 2:
-				currentMillisR = millis();					//update current time for right turn
+				currentMillisR = [self millis];					//update current time for right turn
 				//right turn lamp state logic
 				if (currentMillisR - previousMillisR > flashRate)
 				{
@@ -401,10 +373,10 @@
 						//default case do nothing
 					}
 					//update right turn lamps relays
-					digitalWrite(turnR, stateTurnR);
-					digitalWrite(tailR1, stateTailR1);
-					digitalWrite(tailR2, stateTailR2);
-					digitalWrite(tailR3, stateTailR3);
+					[self digitalWrite:turnR state:stateTurnR];
+					[self digitalWrite:tailR1 state:stateTailR1];
+					[self digitalWrite:tailR2 state:stateTailR2];
+					[self digitalWrite:tailR3 state:stateTailR3];
 				}
 			default:
 				//not valid turn signal pattern detected
@@ -415,8 +387,8 @@
 	else
 	{
 		//activate brake relays so braking inidicator function is on when no turn lamp indicator is active
-		digitalWrite(brakeLeft, LOW);
-		digitalWrite(brakeRight, LOW);
+		[self digitalWrite:brakeLeft state:LOW];
+		[self digitalWrite:brakeRight state:LOW];
 		
 		//turn off any left turn lamps that might still be on after left turn signal indicator becomes inactive
 		if ((!stateTurnL || !stateTailL1 || !stateTailL2 || !stateTailL3) && (!digitalRead(inputLeftTurn)))
@@ -427,10 +399,10 @@
 			stateTailL2 = HIGH;
 			stateTailL3 = HIGH;
 			//update left turn lamps relays
-			digitalWrite(turnL, stateTurnL);
-			digitalWrite(tailL1, stateTailL1);
-			digitalWrite(tailL2, stateTailL2);
-			digitalWrite(tailL3, stateTailL3);
+			[self digitalWrite:turnL state:stateTurnL];
+			[self digitalWrite:tailL1 state:stateTailL1];
+			[self digitalWrite:tailL2 state:stateTailL2];
+			[self digitalWrite:tailL3 state:stateTailL3];
 			
 		}
 		//turn off any right turn lamps that might still be on after right turn signal indicator becomes inactive
@@ -442,10 +414,10 @@
 			stateTailR2 = HIGH;
 			stateTailR3 = HIGH;
 			//update right turn lamps relays
-			digitalWrite(turnR, stateTurnR);
-			digitalWrite(tailR1, stateTailR1);
-			digitalWrite(tailR2, stateTailR2);
-			digitalWrite(tailR3, stateTailR3);
+			[self digitalWrite:turnR state:stateTurnR];
+			[self digitalWrite:tailR1 state:stateTailR1];
+			[self digitalWrite:tailR2 state:stateTailR2];
+			[self digitalWrite:tailR3 state:stateTailR3];
 		}
 	}
 }
