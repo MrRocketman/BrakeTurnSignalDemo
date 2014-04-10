@@ -318,44 +318,6 @@
     [self digitalWrite:tailR1 state:stateTailR1];
     [self digitalWrite:tailR2 state:stateTailR2];
     [self digitalWrite:tailR3 state:stateTailR3];
-    
-    
-    
-    
-    
-	//no turn signal indicator active
-	/*else
-	{
-		//turn off any left turn lamps that might still be on after left turn signal indicator becomes inactive
-		if ((!stateTurnL || !stateTailL1 || !stateTailL2 || !stateTailL3) && (![self digitalRead:inputLeftTurn]))
-		{
-			//left turn lamps states off
-			stateTurnL = HIGH;
-			stateTailL1 = HIGH;
-			stateTailL2 = HIGH;
-			stateTailL3 = HIGH;
-			//update left turn lamps relays
-			[self digitalWrite:turnL state:stateTurnL];
-			[self digitalWrite:tailL1 state:stateTailL1];
-			[self digitalWrite:tailL2 state:stateTailL2];
-			[self digitalWrite:tailL3 state:stateTailL3];
-			
-		}
-		//turn off any right turn lamps that might still be on after right turn signal indicator becomes inactive
-		if ((!stateTurnR || !stateTailR1 || !stateTailR2 || !stateTailR3) && (![self digitalRead:inputRightTurn]))
-		{
-			//right turn lamps state off
-			stateTurnR = HIGH;
-			stateTailR1 = HIGH;
-			stateTailR2 = HIGH;
-			stateTailR3 = HIGH;
-			//update right turn lamps relays
-			[self digitalWrite:turnR state:stateTurnR];
-			[self digitalWrite:tailR1 state:stateTailR1];
-			[self digitalWrite:tailR2 state:stateTailR2];
-			[self digitalWrite:tailR3 state:stateTailR3];
-		}
-	}*/
 }
 
 @end
