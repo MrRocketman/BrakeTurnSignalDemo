@@ -26,7 +26,7 @@
     
     BOOL inputLeftTurn;
     BOOL inputRightTurn;
-    BOOL inputBrakesState;
+    BOOL inputBrakes;
     double systemStartTime;
 }
 

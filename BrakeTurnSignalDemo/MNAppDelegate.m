@@ -72,11 +72,11 @@
 {
     if([sender state] == NSOnState)
     {
-        inputBrakesState = YES;
+        inputBrakes = YES;
     }
     else
     {
-        inputBrakesState = NO;
+        inputBrakes = NO;
     }
 }
 
@@ -224,8 +224,12 @@
 
 - (void)manageTurnSignalLightStates:(NSTimer *)timer
 {
+    BOOL inputBrakesState = [self digitalRead:inputBrakes];
+    BOOL inputLeftTurnState = [self digitalRead:inputLeftTurn];
+    BOOL inputRightTurnState = [self digitalRead:inputRightTurn];
+    
     // No brake or turn signals active
-    if([self digitalRead:inputBrakesState] == HIGH && [self digitalRead:inputLeftTurn] == HIGH && [self digitalRead:inputRightTurn] == HIGH)
+    if(inputBrakesState == HIGH && inputLeftTurnState == HIGH && inputRightTurnState == HIGH)
     {
         //set all tail turn lamps states off
         stateTurnL = HIGH;
@@ -238,7 +242,7 @@
         stateTailR3 = HIGH;
     }
     // Only the brakes signal is active
-    else if([self digitalRead:inputBrakesState] == LOW && [self digitalRead:inputLeftTurn] == HIGH && [self digitalRead:inputRightTurn] == HIGH)
+    else if(inputBrakesState == LOW && inputLeftTurnState == HIGH && inputRightTurnState == HIGH)
     {
         //set all tail turn lamps states on
         stateTurnL = LOW;
@@ -251,10 +255,8 @@
         stateTailR3 = LOW;
     }
     // Brakes signal and left turn signal are active
-    else if([self digitalRead:inputBrakesState] == LOW && [self digitalRead:inputLeftTurn] == LOW && [self digitalRead:inputRightTurn] == HIGH)
+    else if(inputBrakesState == LOW && inputLeftTurnState == LOW && inputRightTurnState == HIGH)
     {
-        [self turnSignalLogicForTurnLight:&stateTurnL light1:&stateTailL1 light2:&stateTailL2 light3:&stateTailL3];
-        
         //set right tail turn lamps states on
         stateTurnR = LOW;
         stateTailR1 = LOW;
@@ -262,28 +264,47 @@
         stateTailR3 = LOW;
     }
     // Brakes signal and left turn signal are active
-    else if([self digitalRead:inputBrakesState] == LOW && [self digitalRead:inputLeftTurn] == HIGH && [self digitalRead:inputRightTurn] == LOW)
+    else if(inputBrakesState == LOW && inputLeftTurnState == HIGH && inputRightTurnState == LOW)
     {
-        [self turnSignalLogicForTurnLight:&stateTurnR light1:&stateTailR1 light2:&stateTailR2 light3:&stateTailR3];
-        
         //set left tail turn lamps states on
         stateTurnL = LOW;
         stateTailL1 = LOW;
         stateTailL2 = LOW;
         stateTailL3 = LOW;
     }
-    // Only left turn signal is active
-    else if([self digitalRead:inputBrakesState] == HIGH && [self digitalRead:inputLeftTurn] == LOW && [self digitalRead:inputRightTurn] == HIGH)
+    // Brakes signal and left turn signal are active
+    else if(inputBrakesState == HIGH && inputLeftTurnState == LOW && inputRightTurnState == HIGH)
+    {
+        //set right tail turn lamps states off
+        stateTurnR = HIGH;
+        stateTailR1 = HIGH;
+        stateTailR2 = HIGH;
+        stateTailR3 = HIGH;
+    }
+    // Brakes signal and left turn signal are active
+    else if(inputBrakesState == HIGH && inputLeftTurnState == HIGH && inputRightTurnState == LOW)
+    {
+        //set left tail turn lamps states off
+        stateTurnL = HIGH;
+        stateTailL1 = HIGH;
+        stateTailL2 = HIGH;
+        stateTailL3 = HIGH;
+    }
+    
+    // Left turn signal is active
+    if(inputLeftTurnState == LOW)
     {
         [self turnSignalLogicForTurnLight:&stateTurnL light1:&stateTailL1 light2:&stateTailL2 light3:&stateTailL3];
     }
-    // Only right turn signal is active
-    else if([self digitalRead:inputBrakesState] == HIGH && [self digitalRead:inputLeftTurn] == HIGH && [self digitalRead:inputRightTurn] == LOW)
+    // Right turn signal is active
+    if(inputRightTurnState == LOW)
     {
         [self turnSignalLogicForTurnLight:&stateTurnR light1:&stateTailR1 light2:&stateTailR2 light3:&stateTailR3];
     }
+    
+    
     // Flahsers signal is active
-    else if(1 == 0)
+    if(1 == 0)
     {
         
     }
