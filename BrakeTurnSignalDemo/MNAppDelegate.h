@@ -21,14 +21,15 @@
     
     int flashPattern;
     long flashRate;
-    unsigned long currentMillisL;
-    unsigned long previousMillisL;
-    unsigned long currentMillisR;
-    unsigned long previousMillisR;
+    int currentMillisL;
+    int previousMillisL;
+    int currentMillisR;
+    int previousMillisR;
     
     BOOL inputLeftTurn;
     BOOL inputRightTurn;
     BOOL inputBrakesState;
+    double systemStartTime;
 }
 
 @property (assign) IBOutlet NSWindow *window;

@@ -20,6 +20,7 @@
 - (void)digitalWrite:(NSButton *)light state:(BOOL)highOrLow;
 - (BOOL)digitalRead:(BOOL)variable;
 - (void)manageTurnSignalLightStates:(NSTimer *)timer;
+- (int)millis;
 
 @end
 
@@ -31,12 +32,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    flashRate = 1000;
+    systemStartTime = [[NSDate date] timeIntervalSinceReferenceDate];
     
-    currentMillisL = [self millis];
-    currentMillisR = [self millis];
-    previousMillisL = [self millis];
-    previousMillisR = [self millis];
+    flashRate = 1000;
     
     // Call manager light states repeatedly
     [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(manageTurnSignalLightStates:) userInfo:nil repeats:YES];
@@ -101,32 +99,35 @@
 
 - (void)digitalWrite:(NSButton *)light state:(BOOL)highOrLow
 {
+    highOrLow = !highOrLow; // Inverse logic
+    
     [light highlight:highOrLow];
     
+    // Simulate the wiring of the brakeRelays
     if(light == brakeLeft)
     {
-        [self digitalWrite:tailL1 state:highOrLow];
-        [self digitalWrite:tailL2 state:highOrLow];
-        [self digitalWrite:tailL3 state:highOrLow];
-        [self digitalWrite:turnL state:highOrLow];
+        [tailL1 highlight:highOrLow];
+        [tailL2 highlight:highOrLow];
+        [tailL3 highlight:highOrLow];
+        [turnL highlight:highOrLow];
     }
     else if(light == brakeRight)
     {
-        [self digitalWrite:tailR1 state:highOrLow];
-        [self digitalWrite:tailR2 state:highOrLow];
-        [self digitalWrite:tailR3 state:highOrLow];
-        [self digitalWrite:turnR state:highOrLow];
+        [tailR1 highlight:highOrLow];
+        [tailR2 highlight:highOrLow];
+        [tailR3 highlight:highOrLow];
+        [turnR highlight:highOrLow];
     }
 }
 
 - (BOOL)digitalRead:(BOOL)variable
 {
-    return !variable;
+    return !variable; // Inverse logic
 }
 
-- (unsigned long)millis
+- (int)millis
 {
-    return (int)([[NSDate date] timeIntervalSinceReferenceDate] * 1000);
+    return (int)(([[NSDate date] timeIntervalSinceReferenceDate] - systemStartTime) * 1000);
 }
 
 #pragma mark - Managment
@@ -143,7 +144,9 @@
 				//basic left turn signal pattern
 			case 0:
 				currentMillisL = [self millis];					//update current time for left turn
+                NSLog(@"current:%d", currentMillisL);
 				//left turn state logic
+                NSLog(@"current-previous:%d", currentMillisL - previousMillisL);
 				if (currentMillisL - previousMillisL > flashRate)
 				{
 					previousMillisL = currentMillisL;		//save last time left turn changed state
