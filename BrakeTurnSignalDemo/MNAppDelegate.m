@@ -170,13 +170,13 @@
                     *stateTail1 = LOW;
                 }
                 // Tail turn lamp inner on, tail turn lamps middle & outer off
-                else if (!stateTail1 && stateTail2 && stateTail3)
+                else if (!(*stateTail1) && *stateTail2 && *stateTail3)
                 {
                     // Set tail turn lamp middle state on
                     *stateTail2 = LOW;
                 }
                 // Tail turn lamps inner & middle on, Tail turn lamp outer off
-                else if (!stateTail1 && !stateTail2 && stateTail3)
+                else if (!(*stateTail1) && !(*stateTail2) && *stateTail3)
                 {
                     // Set tail turn lamp outer state on
                     *stateTail3 = LOW;
